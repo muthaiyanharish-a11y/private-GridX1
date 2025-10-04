@@ -5,8 +5,9 @@ backend/node_modules/
 simulators/node_modules/
 
 # Build outputs
-dist/
-frontend/dist/
+# (frontend/dist is tracked deliberately for deployment artifacts in this repo)
+# dist/
+# frontend/dist/
 
 # Environment and secrets
 .env
