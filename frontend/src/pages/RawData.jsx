@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { Card, Table } from "antd";
+import { Card, Table, Button, Tooltip, Space } from "antd";
+import "../styles/glass.css";
+import "../styles/responsive.css";
 import { Line } from 'react-chartjs-2';
 import { lineChartOptions } from '../components/ChartConfig';
 import api from "../services/api";
@@ -46,8 +48,11 @@ export default function RawData() {
       dataIndex: 'status',
       key: 'status',
       render: (status) => (
-        <span className={`status-badge ${status}`}>
-          {status.toUpperCase()}
+        <Tooltip title={`Status: ${status.toUpperCase()}`}>
+          <span className={`status-badge ${status} fade-in`}>
+            {status.toUpperCase()}
+          </span>
+        </Tooltip>
         </span>
       )
     }

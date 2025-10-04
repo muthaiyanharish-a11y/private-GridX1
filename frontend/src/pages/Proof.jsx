@@ -6,6 +6,8 @@ import { lineChartOptions } from '../components/ChartConfig';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import "../styles/glass.css";
+import "../styles/responsive.css";
 
 export default function Proof() {
   // simulator state
@@ -210,15 +212,15 @@ export default function Proof() {
   const relay2PulseClass = relayPulse2Key ? "pulse" : "";
 
   return (
-    <div className="proof-root">
+    <div className="proof-root glass-background">
       <div className="wrap">
-        <header>
+        <header className="glass-header fade-in">
           <h1>LV Line Simulator</h1>
-          <div className="muted">POC simulator — simulated values only</div>
+          <div className="muted text-glow">POC simulator — simulated values only</div>
         </header>
 
-        <div className="map-layout" style={{ display: 'flex', width: '100%', gap: 12 }}>
-          <div style={{ width: 320 }} className="card controls">
+        <div className="map-layout glass-grid" style={{ display: 'flex', width: '100%', gap: 12 }}>
+          <div style={{ width: 320 }} className="glass-card controls slide-in">
             <div className="row">
               <label className="small">Simulator</label>
               <select value={simMode} onChange={(e) => setSimMode(e.target.value)}>
@@ -271,7 +273,7 @@ export default function Proof() {
 
           </div>
 
-          <div style={{ flex: 1 }} className="card map-central" >
+          <div style={{ flex: 1 }} className="glass-card map-central fade-in" >
               {/* Map filling the central area, similar to MapView */}
               <div style={{ height: 520 }}>
                 <MapContainer center={mapZone.center} zoom={9} style={{ height: "100%", width: "100%" }}>
@@ -332,14 +334,14 @@ export default function Proof() {
               </div>
             </div>
             {/* Right panel: assignments and logs */}
-            <div style={{ width: 360 }} className="card">
+            <div style={{ width: 360 }} className="glass-card slide-in">
               <div style={{ fontWeight: 700 }}>POC Assignments</div>
               <div style={{ marginTop: 8 }}>
                 <div><strong>A:</strong> {subAName} <span className="muted">{line1.relay ? '(relay ON)' : '(relay OFF)'}</span></div>
                 <div style={{ marginTop: 6 }}><strong>B:</strong> {subBName} <span className="muted">{line2.relay ? '(relay ON)' : '(relay OFF)'}</span></div>
                 <div style={{ marginTop: 12 }}>
-                  <button className="ghost" onClick={() => simulateFaultOn(1)}>Trip A (simulate)</button>
-                  <button className="ghost" onClick={() => simulateFaultOn(2)} style={{ marginLeft: 8 }}>Trip B (simulate)</button>
+                  <button className="glass-button pulse-hover" onClick={() => simulateFaultOn(1)}>Trip A (simulate)</button>
+                  <button className="glass-button pulse-hover" onClick={() => simulateFaultOn(2)} style={{ marginLeft: 8 }}>Trip B (simulate)</button>
                 </div>
                 <div style={{ marginTop: 12 }}>
                   <button className="ghost" onClick={() => { setSubAId(''); setSubBId(''); }}>Clear assignments</button>
@@ -350,8 +352,9 @@ export default function Proof() {
               <div style={{ fontWeight: 600, marginBottom: 8 }}>Logs</div>
               <div id="logs" className="logs" style={{ maxHeight: 200, overflow: 'auto' }}>
                 {logs.map((l, i) => (
-                  <div className="log-line" key={i}>
-                    {l.time} — {l.text}
+                  <div className="log-line slide-in" key={i}>
+                    <span className="log-time">{l.time}</span>
+                    <span className="log-message">{l.text}</span>
                   </div>
                 ))}
               </div>

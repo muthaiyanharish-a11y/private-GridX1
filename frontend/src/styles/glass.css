@@ -1,0 +1,181 @@
+/* Video background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-bg);
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-gap);
+}
+
+/* Glass effect cards */
+.glass-card {
+  background: var(--card-glass-bg) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
+}
+
+/* Glass buttons */
+.glass-button {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.glass-button:active {
+  transform: translateY(0);
+}
+
+/* Power line effects */
+.power-line {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.power-line.active {
+  background: linear-gradient(90deg, var(--success-color), var(--success-light));
+  box-shadow: 0 0 10px var(--success-color);
+}
+
+.power-line.fault {
+  background: linear-gradient(90deg, var(--danger-color), var(--danger-light));
+  box-shadow: 0 0 10px var(--danger-color);
+  animation: pulseFault 1s infinite;
+}
+
+@keyframes pulseFault {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Interactive elements */
+.interactive-row {
+  transition: transform 0.2s ease;
+}
+
+.interactive-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Status badges with animation */
+.status-badge {
+  position: relative;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  animation: badgePulse 2s infinite;
+}
+
+.status-badge.normal {
+  background: rgba(34,197,94,0.1);
+  color: #22c55e;
+}
+
+.status-badge.warning {
+  background: rgba(245,158,11,0.1);
+  color: #f59e0b;
+}
+
+.status-badge.alert {
+  background: rgba(239,68,68,0.1);
+  color: #ef4444;
+}
+
+@keyframes badgePulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Enhanced table styles */
+.ant-table-row {
+  transition: background-color 0.2s ease;
+}
+
+.ant-table-row:hover {
+  background-color: var(--accent-soft) !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .background-video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .ant-card {
+    margin-bottom: var(--section-gap);
+  }
+  
+  .ant-table {
+    font-size: 14px;
+  }
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% { background-position: -468px 0; }
+  100% { background-position: 468px 0; }
+}
+
+.loading-shimmer {
+  background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+}
