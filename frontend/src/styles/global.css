@@ -1,0 +1,193 @@
+/* Global extra polish styles */
+:root {
+  --accent-soft: rgba(11,118,184,0.06);
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --card-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.05);
+}
+
+/* Global background and layout */
+body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+}
+
+/* Improved card styling */
+.ant-card {
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px -1px rgba(0,0,0,0.12), 0 3px 6px -2px rgba(0,0,0,0.08);
+}
+
+/* subtle card grouping */
+.group { display:flex; gap:12px; align-items:stretch; }
+
+/* small helpers */
+.p-12 { padding: 12px; }
+.mt-12 { margin-top: 12px; }
+.mb-12 { margin-bottom: 12px; }
+
+/* Make images inside cards consistent */
+.card img { max-width: 100%; height: auto; display: block; }
+
+/* small responsive tweaks for toolbar buttons */
+.toolbar { display:flex; gap:8px; align-items:center; }
+
+/* make code/text monospaced where needed */
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Helvetica Neue', monospace; }
+
+/* make small badges consistent */
+.small-badge { padding:4px 8px; border-radius:8px; font-weight:700; font-size:12px; }
+.small-badge.ok { background: linear-gradient(90deg,#67c23a,#4bb34a); color:white; }
+.small-badge.warn { background: linear-gradient(90deg,#f1b24d,#e6a23c); color:white; }
+.small-badge.fault { background: linear-gradient(90deg,#f56c6c,#ef4444); color:white; }
+
+/* Home page tweaks */
+.dashboard-container { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Improved dashboard header */
+.dashboard-summary-banner { 
+  background: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 24px;
+}
+
+.dashboard-summary-banner .title { 
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary-color), #4096ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--primary-color);
+}
+
+/* Stats row improvements */
+.stats-row .ant-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-row .ant-statistic {
+  text-align: center;
+}
+
+.stats-row .ant-statistic-title {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #4b5563;
+}
+
+.stats-row .ant-statistic-content {
+  font-size: 28px;
+  font-weight: 600;
+}
+.dashboard-summary-banner { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.dashboard-summary-banner .title { font-size:20px; font-weight:800; color:var(--primary-color); }
+.substation-list { display:flex; flex-wrap:wrap; gap:10px; }
+.substation-card { background: var(--surface); border-radius:10px; border:1px solid rgba(12,18,24,0.04); padding:10px 12px; display:flex; align-items:center; min-width:150px; }
+.substation-status-dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:8px; }
+.substation-status-dot.ok { background:#16a34a; }
+.substation-status-dot.warning { background:#f59e0b; }
+.substation-status-dot.fault { background:#ef4444; }
+.status-indicator { width:12px; height:12px; border-radius:6px; display:inline-block; margin-right:6px; }
+.status-indicator.status-ok { background:#67c23a; }
+.status-indicator.status-warning { background:#e6a23c; }
+.status-indicator.status-fault { background:#f56c6c; }
+
+/* Logs page styling */
+.logs-list { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+.log-item { display:flex; gap:12px; padding:12px; background:var(--card); border-radius:10px; box-shadow:0 6px 18px rgba(3,12,20,0.04); border:1px solid rgba(12,18,24,0.04); }
+.log-time { color:var(--muted); width:180px; flex:0 0 180px; font-size:13px; }
+.log-body { flex:1; }
+
+/* Chart card improvements */
+.chart-card {
+  height: 100%;
+  min-height: 360px;
+}
+
+.chart-card .ant-card-head {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0 24px;
+}
+
+.chart-card .ant-card-head-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.chart-card .ant-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Raw data table */
+.raw-container { padding: 18px; }
+.raw-table thead th { position: sticky; top: 0; background: var(--card); z-index: 2; padding: 10px; text-align: left; border-bottom: 1px solid rgba(12,18,24,0.06); }
+.raw-table tbody tr.odd { background: rgba(9, 161, 147, 0.02); }
+.raw-table tbody tr.even { background: transparent; }
+.raw-table td { padding: 10px; border-bottom: 1px solid rgba(12,18,24,0.04); }
+.raw-table .small-badge { display:inline-block; padding:6px 12px; border-radius:999px; font-size:12px; }
+
+/* Make the top navigation bar sticky so it's always accessible when scrolling */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Ensure sticky navbar displays above content and keeps its visual elevation */
+.navbar { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+
+/* Home page alignment fixes */
+.stats-row { margin-bottom: 20px; }
+.stats-row .ant-card { display:flex; align-items:center; justify-content:center; }
+.section-title { font-weight:700; font-size:22px; color:var(--primary-color); margin: 18px 0 12px; text-align:center; }
+.zone-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.zone-title { font-weight:700; font-size:16px; color:var(--text); }
+.zone-actions { display:flex; gap:8px; align-items:center; }
+.btn.protect-btn { background: linear-gradient(90deg,#06b6d4,#0891b2); color:#fff; border: none; box-shadow: 0 6px 18px rgba(6,166,180,0.12); }
+.btn.protect-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(6,166,180,0.14); }
+.btn.simulate-btn { background: transparent; color: var(--danger); border: 1px solid rgba(12,18,24,0.06); }
+.substation-list { display:flex; flex-wrap:wrap; gap:10px; }
+.substation-card { display:flex; align-items:center; gap:8px; padding:10px; border-radius:10px; }
+
+/* Align charts to top so adjacent cards match height and alignment */
+.chart-card-top { align-items: flex-start; padding-top: 14px; }
+.chart-wrapper { min-height: 340px; }
+
+/* Chart container consistency */
+.ant-card.chart-card { height: 100%; }
+.chart-card .ant-card-body { display: flex; flex-direction: column; height: 100%; min-height: 280px; padding: 16px; }
+.chart-card .ant-table-wrapper { flex: 1; }
+.chart-card .ant-card-head { border-bottom: 1px solid var(--border-color); }
+
+/* Map view: make sidebar and map area align vertically and respect equal heights */
+.sidebar { width: 320px; padding: 16px; background: var(--surface); border-right: 1px solid var(--border-color); min-height: 600px; box-shadow: none; }
+.map-area { display: flex; flex-direction: column; min-height: 600px; }
+.map-wrapper { min-height: 480px; }
+.zone-row { display:flex; justify-content:space-between; align-items:center; padding: 8px 10px; border-radius:8px; cursor:pointer; }
+.zone-row.active { background: linear-gradient(90deg, rgba(6,166,180,0.06), rgba(6,166,180,0.03)); }
+.status-dot { width:10px; height:10px; border-radius:6px; }
+.status-dot.ok { background: var(--success-color); }
+.status-dot.warn { background: var(--warning-color); }
+.status-dot.fault { background: var(--danger-color); }
