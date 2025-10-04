@@ -1,16 +1,25 @@
-import React, { useState, Suspense, lazy, useEffect } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { BackTop } from "antd";
+import { BackTop, Spin } from "antd";
+import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar";
 import NotificationBar from "./components/NotificationBar";
 import "./styles/theme.css";
 
-import Home from "./pages/Home";
-import MapView from "./pages/MapView";
-import RawData from "./pages/RawData";
-import Logs from "./pages/Logs";
-import Analysis from "./pages/Analysis";
+// Lazy load all routes
+const Home = lazy(() => import("./pages/Home"));
+const MapView = lazy(() => import("./pages/MapView"));
+const RawData = lazy(() => import("./pages/RawData"));
+const Logs = lazy(() => import("./pages/Logs"));
+const Analysis = lazy(() => import("./pages/Analysis"));
 const Proof = lazy(() => import('./pages/Proof'));
+
+// Loading component
+const PageLoader = () => (
+  <div className="page-loader">
+    <Spin size="large" tip="Loading..." />
+  </div>
+);
 
 export default function App() {
   // global alerts array (we let MapView push alerts via props.setAlerts)
@@ -21,6 +30,15 @@ export default function App() {
   return (
     <Router>
       <div className="app-container">
+        <Helmet>
+          <title>KSEB LT Grid Monitor</title>
+          <meta name="description" content="Real-time monitoring and analysis of KSEB's LT power grid infrastructure" />
+          <meta name="keywords" content="KSEB, power grid, monitoring, analysis, electricity" />
+          <meta property="og:title" content="KSEB LT Grid Monitor" />
+          <meta property="og:description" content="Real-time monitoring and analysis of KSEB's LT power grid infrastructure" />
+          <meta property="og:type" content="website" />
+          <meta name="theme-color" content="#1890ff" />
+        </Helmet>
         <BackTop visibilityHeight={100}>
           <div className="custom-backtop" role="button" aria-label="Back to top">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden>
@@ -33,16 +51,12 @@ export default function App() {
         <NotificationBar alerts={alerts} />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/map" element={<MapView setAlerts={setAlerts} setLogs={setLogs} />} />
-            <Route path="/raw" element={<RawData />} />
-            <Route path="/logs" element={<Logs logs={logs} />} />
-            <Route path="/analysis" element={<Analysis />} />
-            <Route path="/poc" element={
-              <Suspense fallback={<div style={{padding:20}}>Loading POC...</div>}>
-                <Proof />
-              </Suspense>
-            } />
+            <Route path="/" element={<Suspense fallback={<PageLoader />}><Home /></Suspense>} />
+            <Route path="/map" element={<Suspense fallback={<PageLoader />}><MapView setAlerts={setAlerts} setLogs={setLogs} /></Suspense>} />
+            <Route path="/raw" element={<Suspense fallback={<PageLoader />}><RawData /></Suspense>} />
+            <Route path="/logs" element={<Suspense fallback={<PageLoader />}><Logs logs={logs} /></Suspense>} />
+            <Route path="/analysis" element={<Suspense fallback={<PageLoader />}><Analysis /></Suspense>} />
+            <Route path="/poc" element={<Suspense fallback={<PageLoader />}><Proof /></Suspense>} />
           </Routes>
         </div>
         <div className="footer">© 2025 KSEB LT Grid Monitor — Demo</div>

@@ -53,7 +53,6 @@ export default function RawData() {
             {status.toUpperCase()}
           </span>
         </Tooltip>
-        </span>
       )
     }
   ];
